@@ -1,0 +1,23 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.7.63:8848
+        namespace: 5a590a34-7a19-481f-bdbf-685cf66db1bc
+      config:
+        server-addr: 192.168.7.63:8848
+        namespace: 5a590a34-7a19-481f-bdbf-685cf66db1bc
+        file-extension: yml
+        group: dev
+        refresh-enabled: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+customization:
+  # mybatis-plus代码生成器配置相关的
+  author: zhao
+  outputDir: F:\mywrokspace\mock-mall-master\mock-admin
+  parentPackage: com.mock.admin.netclass
+  tablePrefix: "sys_"
+  table: sys_menu,sys_permission,sys_role,sys_role_menu,sys_role_permission,sys_user,sys_user_role
