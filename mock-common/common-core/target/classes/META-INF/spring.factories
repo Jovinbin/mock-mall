@@ -1,5 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.mock.common.config.MybatisPlusConfig,\
-  com.mock.common.handle.GlobalExceptionHandler
-#,\com.mock.common.handle.MyMetaObjectHandler
-

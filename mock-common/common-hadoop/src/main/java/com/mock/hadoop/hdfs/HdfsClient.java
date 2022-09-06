@@ -246,7 +246,7 @@ public class HdfsClient {
                 locatedFileStatusList.add(fileStatus);
             }
         } catch (IOException e) {
-            log.error("或许文件详情失败，错误信息：", e);
+            log.error("获取文件详情失败，错误信息：", e);
         }
         return locatedFileStatusList;
     }

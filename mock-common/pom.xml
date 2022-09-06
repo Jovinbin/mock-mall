@@ -16,6 +16,9 @@
     <modules>
         <module>common-core</module>
         <module>common-hadoop</module>
+        <module>common-doris</module>
+        <module>common-log</module>
+        <module>common-redis</module>
     </modules>
 
 </project>

@@ -8,11 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="mock-auth" />
+        <module name="common-log" />
         <module name="mock-hadoop" />
+        <module name="common-doris" />
         <module name="mock-admin" />
         <module name="mock-gateway" />
         <module name="common-hadoop" />
         <module name="demo" />
+        <module name="common-redis" />
         <module name="common-core" />
       </profile>
     </annotationProcessing>
@@ -23,7 +26,10 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="common-core" options="-parameters" />
+      <module name="common-doris" options="-parameters" />
       <module name="common-hadoop" options="-parameters" />
+      <module name="common-log" options="-parameters" />
+      <module name="common-redis" options="-parameters" />
       <module name="demo" options="-parameters" />
       <module name="mock-admin" options="-parameters" />
       <module name="mock-auth" options="-parameters" />

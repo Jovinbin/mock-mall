@@ -5,7 +5,10 @@
     <file url="file://$PROJECT_DIR$/mock-admin/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mock-auth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mock-common/common-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mock-common/common-doris/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mock-common/common-hadoop/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mock-common/common-log/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mock-common/common-redis/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mock-gateway/src/main/java" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>

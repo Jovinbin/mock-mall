@@ -8,10 +8,8 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- * @author YoonaDa
- * @email lintiaoda@suntang.com
- * @description: 封装一个
- * @date 2022-03-11 16:52
+ * @description: 时间工具类
+ * @date 2022-06-11 16:52
  */
 public class TimeStampUtil {
 

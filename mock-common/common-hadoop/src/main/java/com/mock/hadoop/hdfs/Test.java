@@ -36,8 +36,10 @@ public class Test {
         //获取文件信息
 //        hdfsClient.getFileDetail("/", true);
 
+        hdfsClient.getFileDetailExample();
+
         //判断是文件夹还是文件
-        hdfsClient.isFileOrDir("/");
+//        hdfsClient.isFileOrDir("/");
 
 
 //        System.out.println("b = " + b);

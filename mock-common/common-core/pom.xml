@@ -84,6 +84,19 @@
             <artifactId>commons-lang3</artifactId>
         </dependency>
 
+        <!-- kafka -->
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+        </dependency>
+
+        <!-- JWT库 -->
+        <dependency>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>nimbus-jose-jwt</artifactId>
+            <version>9.16.1</version>
+        </dependency>
+
     </dependencies>
 
 </project>

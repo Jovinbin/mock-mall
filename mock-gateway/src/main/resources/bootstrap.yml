@@ -1,0 +1,39 @@
+server:
+  port: 9999
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: mock-gateway
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # 获取JWT验签公钥请求路径
+          jwk-set-uri: 'http://localhost:8000/api/oauth/getPublicKey'
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 启用自动根据服务ID生成路由
+          lower-case-service-id: true # 设置路由的路径为小写的服务ID
+      routes:
+        - id: mock-admin
+          uri: lb://mock-admin
+          predicates:
+            - Path=/api/user/**
+
+        - id: mock-auth
+          uri: lb://mock-auth
+          predicates:
+            - Path=/api/oauth/**
+# 配置白名单路径
+white-list:
+  urls:
+    - "/api/oauth/token"
