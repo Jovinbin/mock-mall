@@ -19,13 +19,23 @@ public class DelSortArrayRepeat {
 
     public static void main(String[] args) {
         int[] nums = {-3,1,0,1,0,3,3};
-        int i = removeDuplicates(nums);
-        System.out.println("i = " + i);
-        for (int num : nums) {
-            System.out.println("num = " + num);
+        // 使用流去重更为简单
+        nums = Arrays.stream(nums).sorted().distinct().toArray();
+        for (int anInt : nums) {
+            System.out.println("anInt = " + anInt);
         }
+//        int i = removeDuplicates(nums);
+//        System.out.println("i = " + i);
+//        for (int num : nums) {
+//            System.out.println("num = " + num);
+//        }
     }
 
+    /**
+     * 去重
+     * @param nums
+     * @return
+     */
     public static int removeDuplicates(int[] nums) {
 //        HashSet<Integer> set = new HashSet<>();
 //        for (int num : nums) {

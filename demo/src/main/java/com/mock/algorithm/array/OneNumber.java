@@ -1,5 +1,11 @@
 package com.mock.algorithm.array;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * 给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
@@ -13,10 +19,34 @@ package com.mock.algorithm.array;
  */
 public class OneNumber {
 
+    @Data
+    @AllArgsConstructor
+    static
+    class Student{
+        private Integer id;
+        private String name;
+    }
+
     public static void main(String[] args) {
+        List<Student> list = new ArrayList<>();
+        list.add(new Student(1, "张三"));
+        list.add(new Student(2, "里斯"));
+        list.add(new Student(3, "王五"));
+        list.forEach(e -> {
+            if (e.getId() == 1){
+                e.setName("dasd");
+            }
+        });
+        System.out.println("list = " + list);
+
+
         int[] nums = {4,1,2,1,2};
         int i = singleNumber(nums);
-        System.out.println("i = " + i);
+//        System.out.println("i = " + i);
+        int a = 5;
+        int b = 2;
+        int flag = a ^ b;
+//        System.out.println("flag = " + flag);
     }
 
     /**
@@ -28,6 +58,7 @@ public class OneNumber {
         int result = 0;
         for (int i = 0; i < nums.length; i++) {
             result ^= nums[i];
+            System.out.println("result = " + result);
         }
         return result;
     }

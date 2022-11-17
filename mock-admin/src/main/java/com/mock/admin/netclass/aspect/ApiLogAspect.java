@@ -61,7 +61,7 @@ public class ApiLogAspect {
                         "\n==>  REQUEST_TIME: {}" +
                         "\n==>  PARAM: {}" +
 //                        "\n==>  HEADER: {}" +
-                        "\n<================{}================>"
+                "\n<================{}================>"
                 , MDC.get(TRACE_ID)
                 , request.getRequestURI()
                 , request.getMethod()
@@ -84,7 +84,7 @@ public class ApiLogAspect {
                 "\n<================{}================>" +
                         "\n==>  已响应,耗时 : {}," +
 //                        "\n==>  RESPONSE : {}" +
-                        "\n<================{}================>",
+                "\n<================{}================>",
                 MDC.get(TRACE_ID),
                 this.formatDateTime(System.currentTimeMillis() - beginTime),
                 // 响应内容写出来的话，有点多

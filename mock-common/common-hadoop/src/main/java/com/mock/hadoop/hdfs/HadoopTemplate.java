@@ -1,116 +1,28 @@
 package com.mock.hadoop.hdfs;
 
-import com.mock.hadoop.util.FileUtils;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
+import javax.annotation.Resource;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
- * 客户端代码：工具类  （提供三个构造方法获取客户端对象）
- * 1、获取一个客户端对象
- * 2、执行相关的操作命令
- * 3、关闭资源
- * HDFS     zookeeper
- *
  * @author zhao
- * @since 2022-08-03 15:54
+ * @since 2022-10-19 16:04
  */
+@Component
+@ConditionalOnClass(FileSystem.class)
 @Slf4j
-public class HdfsClient {
+public class HadoopTemplate {
 
-    /**
-     * 客户端对象
-     */
+    @Resource
     private FileSystem fileSystem;
-
-    /**
-     * @param configuration  配置信息
-     */
-    public HdfsClient(Configuration configuration) {
-        init(configuration);
-    }
-
-    /**
-     * @param hdfsUri        连接的集群nn地址
-     * @param configuration  配置信息
-     */
-    public HdfsClient(URI hdfsUri, Configuration configuration) {
-        init(hdfsUri, configuration);
-    }
-
-    /**
-     * @param user           用户
-     * @param hdfsUri        连接的集群nn地址
-     * @param configuration  配置信息
-     */
-    public HdfsClient(URI hdfsUri, Configuration configuration, String user) {
-        init(hdfsUri, configuration, user);
-    }
-
-    /**
-     * 初始化信息hdfs客户端信息
-     */
-    private void init(Configuration configuration) {
-
-        try {
-            // 获取到了客户端对象
-            fileSystem = FileSystem.get(configuration);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * 初始化信息hdfs客户端信息
-     */
-    private void init(URI hdfsUri, Configuration configuration) {
-
-        try {
-            // 获取到了客户端对象
-            fileSystem = FileSystem.get(hdfsUri, configuration);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * 初始化信息hdfs客户端信息
-     */
-    private void init(URI hdfsUri, Configuration configuration, String user) {
-
-        try {
-            // 获取到了客户端对象
-            fileSystem = FileSystem.get(hdfsUri, configuration, user);
-            System.out.println("fileSystem = " + fileSystem);
-
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     *  返回客户端对象
-     */
-    public FileSystem getFileSystem(){
-        return fileSystem;
-    }
-
-    /**
-     * 释放资源
-     */
-    public void close() throws IOException {
-        // 关闭资源
-        fileSystem.close();
-    }
 
     //  -----------------   一些常用方法  -----------------
     // TODO: 2022/8/4 后续有用其他的到再继续补充
@@ -311,7 +223,7 @@ public class HdfsClient {
             in = fileSystem.open(srcPath);
             //复制到标准输出流
 //            IOUtils.copyBytes(in, System.out, 4096, false);
-            content = FileUtils.streamToString(in, "UTF-8").toString();
+            content = streamToString(in, "UTF-8").toString();
         } catch (IOException e) {
             log.error("文件内容读取失败，错误信息：", e);
         }
@@ -320,8 +232,8 @@ public class HdfsClient {
 
     /**
      * 复制文件
-     * @param inputStream
-     * @param filePath
+     * @param inputStream   需要复制的文件流
+     * @param filePath      复制到的文件路径
      */
     public void copyFile(InputStream inputStream, String filePath) {
         try {
@@ -356,9 +268,14 @@ public class HdfsClient {
         return in;
     }
 
+    public static void main(String[] args) {
+        int i = (int) ((Math.random() * 9 + 1) * 100000);
+        System.out.println("i = " + i);
+    }
+
     /**
-     * 获取目录地下所有文件的路径
-     * @param path
+     * 获取路径底下所有的文件路径
+     * @param path  目录位置
      * @return
      */
     public List<Path> getAllFilePath(String path){
@@ -367,13 +284,38 @@ public class HdfsClient {
             RemoteIterator<LocatedFileStatus> listFiles = fileSystem.listFiles(new Path(path), true);
             while (listFiles.hasNext()){
                 LocatedFileStatus fileStatus = listFiles.next();
-                System.out.println("fileStatus.getPath() = " + fileStatus.getPath());
                 filePaths.add(fileStatus.getPath());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
         return filePaths;
+    }
+
+    /**
+     * 读取文件流数据
+     * @param inputStream
+     * @return
+     */
+    @SneakyThrows
+    public StringBuffer streamToString(InputStream inputStream, String charsetName){
+        StringBuffer sb = new StringBuffer();
+        InputStreamReader isReader = null;
+        BufferedReader br = null;
+        try {
+            isReader = new InputStreamReader(inputStream, charsetName);
+            br = new BufferedReader(isReader);
+            //循环逐行读取
+            while (br.ready()) {
+                sb.append(br.readLine());
+            }
+        } catch (IOException e) {
+            log.error("文件流读取发生异常 ---》", e);
+        } finally {
+            // 关闭流
+            br.close();
+        }
+        return sb;
     }
 
 }
