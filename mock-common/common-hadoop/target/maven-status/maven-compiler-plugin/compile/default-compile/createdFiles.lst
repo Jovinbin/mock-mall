@@ -1,0 +1,6 @@
+com\mock\hadoop\hdfs\Test.class
+com\mock\hadoop\hdfs\HdfsClient.class
+com\mock\hadoop\config\HadoopConfig.class
+com\mock\hadoop\util\FileUtils.class
+com\mock\hadoop\config\HdfsConfig.class
+com\mock\hadoop\hdfs\HadoopTemplate.class

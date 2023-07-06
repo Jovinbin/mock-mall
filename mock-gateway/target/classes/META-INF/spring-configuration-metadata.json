@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "white-list",
+      "type": "com.mock.gateway.config.WhiteConfig",
+      "sourceType": "com.mock.gateway.config.WhiteConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "white-list.white-info",
+      "type": "java.util.List<com.mock.gateway.common.WhiteUrlInfo>",
+      "sourceType": "com.mock.gateway.config.WhiteConfig"
+    }
+  ],
+  "hints": []
+}

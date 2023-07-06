@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.mock.common.redis.RedisConfig,\
+  com.mock.common.redis.util.RedisUtils,\
+  com.mock.common.redis.RedisCacheConfig
+

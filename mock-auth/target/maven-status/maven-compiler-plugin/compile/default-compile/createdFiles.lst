@@ -1,0 +1,14 @@
+com\mock\auth\client\fallback\UserFeignFallbackClient.class
+com\mock\auth\config\SwaggerConfig.class
+com\mock\auth\security\config\AuthorizationServerConfig.class
+com\mock\auth\security\core\user\SysUserDetailServiceImpl.class
+com\mock\auth\security\core\clientdetails\ClientDetailsServiceImpl.class
+com\mock\auth\dto\AuthUserDTO.class
+com\mock\auth\dto\AuthClientDTO.class
+com\mock\auth\client\OAuthClientFeignClient.class
+com\mock\auth\client\UserFeignClient.class
+com\mock\auth\security\config\WebSecurityConfig.class
+com\mock\auth\controller\AuthController.class
+com\mock\auth\security\config\AuthorizationServerConfig$1.class
+com\mock\auth\AuthApplication.class
+com\mock\auth\security\core\user\SysUserDetails.class

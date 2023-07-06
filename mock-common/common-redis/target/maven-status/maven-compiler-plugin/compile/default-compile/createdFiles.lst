@@ -1,0 +1,3 @@
+com\mock\common\redis\RedisConfig.class
+com\mock\common\redis\util\RedisUtils.class
+com\mock\common\redis\RedisCacheConfig.class

@@ -24,6 +24,8 @@ public class HadoopConfig {
     @Value("${hadoop.user}")
     private String user;
 
+    String nameServices = "mycluster";
+
     /**
      * Configuration conf=new Configuration（）；
      * 创建一个Configuration对象时，其构造方法会默认加载hadoop中的两个配置文件，
@@ -36,8 +38,27 @@ public class HadoopConfig {
     public FileSystem createFs() throws Exception{
         //读取配置文件
         org.apache.hadoop.conf.Configuration conf = new org.apache.hadoop.conf.Configuration();
-        conf.set(FS_DEFAULT_FS, nameNode);
-        URI uri = new URI(nameNode.trim());
+        // hdfs集群节点
+        String[] nameNodesAddr = nameNode.split(",");
+        // 节点nn的个数
+        String[] nameNodes = new String[nameNodesAddr.length];
+        for (int i = 0; i < nameNodes.length; i++) {
+            nameNodes[i] = "nn" + (i + 1);
+        }
+        String nodes = String.join(",", nameNodes);
+        conf.set(FS_DEFAULT_FS, "hdfs://" + nameServices);
+        conf.set("dfs.nameservices", nameServices);
+        conf.set("dfs.ha.namenodes." + nameServices, nodes);
+        for (int i = 0; i < nameNodesAddr.length; i++) {
+            conf.set("dfs.namenode.rpc-address." + nameServices + "." + nameNodes[i], nameNodesAddr[i]);
+        }
+        conf.set("dfs.client.failover.proxy.provider." + nameServices,"org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider");
+        conf.set(DSF_CLIENT_USE_DATANODE_HOSTNAME, "true");
+        URI uri = new URI("hdfs://" + nameServices + ":8020");
+
+        // hdfs单节点部署
+//        conf.set(FS_DEFAULT_FS, nameNode);
+//        URI uri = new URI(nameNode.trim());
         FileSystem fs = FileSystem.get(uri, conf, user);
         log.info("HDFS --》 fileSystem 初始化成功");
         return fs;

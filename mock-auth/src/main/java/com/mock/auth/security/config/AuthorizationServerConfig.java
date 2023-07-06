@@ -1,15 +1,15 @@
 package com.mock.auth.security.config;
 
 import cn.hutool.core.map.MapUtil;
+import com.mock.auth.security.core.clientdetails.ClientDetailsServiceImpl;
 import com.mock.auth.security.core.user.SysUserDetails;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
@@ -38,16 +38,14 @@ import java.util.Map;
 @Slf4j
 @Configuration
 @EnableAuthorizationServer
+@RequiredArgsConstructor
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    private UserDetailsService sysUserDetailServiceImpl;
+    private final ClientDetailsServiceImpl clientDetailsService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
 
     /**
@@ -59,15 +57,16 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @SneakyThrows
     public void configure(ClientDetailsServiceConfigurer clients) {
         log.info("------ OAuth2客户端初始化成功 ------");
-        clients.inMemory()
-                .withClient("zhao") // 客户端名
-                .secret(passwordEncoder.encode("123456")) // 客户端密码
-                .scopes("all") //授权范围
-//                .resourceIds("") // 资源id
-                // authorization_code授权码模式,password密码模式,implicit简化模式,client_credentials客户端模式,可以设置同时支持多种模式
-                .authorizedGrantTypes("authorization_code","refresh_token","password") // 授权方式
-                .accessTokenValiditySeconds(3600) // token过期时间 一个小时
-                .refreshTokenValiditySeconds(7200); // refresh_token过期时间 两个小时
+        clients.withClientDetails(clientDetailsService);
+//        clients.inMemory()
+//                .withClient("zhao") // 客户端名
+//                .secret(passwordEncoder.encode("123456")) // 客户端密码
+//                .scopes("all") //授权范围
+////                .resourceIds("") // 资源id
+//                // authorization_code授权码模式,password密码模式,implicit简化模式,client_credentials客户端模式,可以设置同时支持多种模式
+//                .authorizedGrantTypes("authorization_code","refresh_token","password") // 授权方式
+//                .accessTokenValiditySeconds(3600) // token过期时间 一个小时
+//                .refreshTokenValiditySeconds(7200); // refresh_token过期时间 两个小时
     }
 
     /**

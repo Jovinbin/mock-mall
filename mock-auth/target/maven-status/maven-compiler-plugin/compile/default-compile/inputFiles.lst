@@ -1,0 +1,16 @@
+F:\myGit\mock-mall\mock-auth\src\main\java\com\mock\auth\dto\AuthUserDTO.java
+F:\myGit\mock-mall\mock-auth\src\main\java\com\mock\auth\security\config\AuthorizationServerConfig.java
+F:\myGit\mock-mall\mock-auth\src\main\java\com\mock\auth\config\SwaggerConfig.java
+F:\myGit\mock-mall\mock-auth\src\main\java\com\mock\auth\security\config\WebSecurityConfig.java
+F:\myGit\mock-mall\mock-auth\src\main\java\com\mock\auth\security\handle\UrlAuthenticationEntryPoint.java
+F:\myGit\mock-mall\mock-auth\src\main\java\com\mock\auth\security\core\clientdetails\ClientDetailsServiceImpl.java
+F:\myGit\mock-mall\mock-auth\src\main\java\com\mock\auth\security\core\user\SysUserDetailServiceImpl.java
+F:\myGit\mock-mall\mock-auth\src\main\java\com\mock\auth\client\fallback\UserFeignFallbackClient.java
+F:\myGit\mock-mall\mock-auth\src\main\java\com\mock\auth\security\core\user\SysUserDetails.java
+F:\myGit\mock-mall\mock-auth\src\main\java\com\mock\auth\security\filter\JwtAuthenticationFilter.java
+F:\myGit\mock-mall\mock-auth\src\main\java\com\mock\auth\AuthApplication.java
+F:\myGit\mock-mall\mock-auth\src\main\java\com\mock\auth\dto\AuthClientDTO.java
+F:\myGit\mock-mall\mock-auth\src\main\java\com\mock\auth\security\filter\TokenAuthenticationFilter.java
+F:\myGit\mock-mall\mock-auth\src\main\java\com\mock\auth\client\UserFeignClient.java
+F:\myGit\mock-mall\mock-auth\src\main\java\com\mock\auth\controller\AuthController.java
+F:\myGit\mock-mall\mock-auth\src\main\java\com\mock\auth\client\OAuthClientFeignClient.java

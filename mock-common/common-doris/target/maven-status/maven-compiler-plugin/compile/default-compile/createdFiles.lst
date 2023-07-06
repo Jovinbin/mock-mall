@@ -1,0 +1,10 @@
+com\mock\doris\param\DorisKafkaParam.class
+com\mock\doris\config\DorisPartitionConf.class
+com\mock\doris\util\DorisUtil.class
+com\mock\doris\service\impl\DorisRoutineLoadStatusServiceImpl.class
+com\mock\doris\config\DorisKafkaConf.class
+com\mock\doris\mapper\DorisRoutineLoadStatusMapper.class
+com\mock\doris\util\JdbcConnectUtil.class
+com\mock\doris\task\DorisTask.class
+com\mock\doris\service\DorisRoutineLoadStatusService.class
+com\mock\doris\entity\DorisRoutineLoadStatusEntity.class

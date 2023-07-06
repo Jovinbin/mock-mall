@@ -3,6 +3,8 @@ spring:
     active: dev
   application:
     name: mock-admin
+
+
 #logging:
 #  level:
 #    com:

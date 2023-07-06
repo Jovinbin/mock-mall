@@ -73,11 +73,8 @@ public class AuthController {
         }
 
         OAuth2AccessToken accessToken = tokenEndpoint.postAccessToken(principal, parameters).getBody();
-
         return Result.success(accessToken);
     }
-
-
 
     @ApiOperation(value = "获取公钥")
     @GetMapping("/getPublicKey")

@@ -20,6 +20,41 @@ import java.util.List;
  */
 public class CodeGeneratorUtil {
 
+    public static final String SUPER_ENTITY_CLASS = "com.suntang.dcm.common.base.BaseEntity";
+
+    public static final String AUTHOR = "yoonada";
+
+    public static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+
+    public static final String JDBC_URL = "jdbc:mysql://192.168.9.132:3306/metadata?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai";
+
+    public static final String JDBC_USER_NAME = "root";
+
+    public static final String JDBC_PASSWORD = "Mysql@8505";
+
+    public static final String PARENT_PACKAGE = "com.suntang.dcm.metadata";
+
+    public static final String OUTPUT_DIR = "H:\\metadata";
+
+    public static final String[] TABLE_PREFIX = new String[]{"t_", "sys_", "st_"};
+
+    public static final String[] INCLUDE_TABLES = new String[]{"st_metadata_sync"};
+
+//    public static void main(String[] args) {
+//        GenerateConfig config = new GenerateConfig();
+//        config.setAuthor(AUTHOR);
+//        config.setDbType(DbType.MYSQL);
+//        config.setJdbcDriver(JDBC_DRIVER);
+//        config.setJdbcUrl(JDBC_URL);
+//        config.setJdbcUserName(JDBC_USER_NAME);
+//        config.setJdbcPassword(JDBC_PASSWORD);
+//        config.setTablePrefix(TABLE_PREFIX);
+//        config.setParentPackage(PARENT_PACKAGE);
+//        config.setOutputDir(OUTPUT_DIR);
+//        config.setIncludeTables(INCLUDE_TABLES);
+//        execute(config);
+//    }
+
     public static void execute(GenerateConfig config){
         // 全局配置
         GlobalConfig gc = new GlobalConfig();

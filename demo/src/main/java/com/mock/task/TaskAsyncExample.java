@@ -6,7 +6,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.util.concurrent.Executor;
+import java.util.concurrent.*;
 
 /**
  * 定时任务与线程池案例
@@ -20,7 +20,7 @@ public class TaskAsyncExample {
     private Executor taskExecutor;
 
     @Async
-    @Scheduled(cron = "0/10 * * * * ?")
+//    @Scheduled(cron = "0/10 * * * * ?")
     public void test() throws InterruptedException {
         Integer num = 0;
         // 作为该线程是否结束的标记
@@ -37,7 +37,7 @@ public class TaskAsyncExample {
     }
 
     @Async
-//    @Scheduled(cron = "0/50 * * * * ?")
+    @Scheduled(cron = "0/20 * * * * ?")
     public void test01() throws InterruptedException {
         System.out.println(" ===== " + Thread.currentThread().getName());
 
@@ -50,10 +50,9 @@ public class TaskAsyncExample {
                 while (flag){
                     Thread thread = Thread.currentThread();
                     System.out.println("name = " + thread.getName());
-                    System.out.println(" ---- " + i);
                     i+=1;
-                    Integer a = Integer.parseInt("a");
-                    Thread.sleep(10000);
+//                    Integer a = Integer.parseInt("a");
+//                    Thread.sleep(10000);
                     if (i == 3){
                         flag = false;
                     }
@@ -61,12 +60,12 @@ public class TaskAsyncExample {
             }
         };
         try {
-        taskExecutor.execute(runnable);
+//        taskExecutor.execute(runnable);
 
         //规律重启线程
-//        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
-//        ScheduledFuture<?> scheduleTask = scheduler.scheduleWithFixedDelay(runnable, 1, 3, TimeUnit.SECONDS);
-//        scheduleTask.cancel(true);
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
+        ScheduledFuture<?> scheduleTask = scheduler.scheduleWithFixedDelay(runnable, 1, 3, TimeUnit.SECONDS);
+        scheduleTask.cancel(true);
 
         } catch (Exception e) {
 //            taskExecutor.execute();

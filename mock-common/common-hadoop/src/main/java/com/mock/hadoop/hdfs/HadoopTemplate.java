@@ -247,7 +247,7 @@ public class HadoopTemplate {
             fsDataOutputStream.flush();
             fsDataOutputStream.close();
             inputStream.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error("文件内容读取失败，错误信息：", e);
         }
     }
@@ -266,11 +266,6 @@ public class HadoopTemplate {
             log.error("文件内容读取失败，错误信息：", e);
         }
         return in;
-    }
-
-    public static void main(String[] args) {
-        int i = (int) ((Math.random() * 9 + 1) * 100000);
-        System.out.println("i = " + i);
     }
 
     /**

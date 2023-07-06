@@ -60,7 +60,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
 //                .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
-                .apis(RequestHandlerSelectors.basePackage("com.mock.admin.netclass"))
+                .apis(RequestHandlerSelectors.basePackage("com.mock.auth"))
                 .paths(PathSelectors.any())
                 .build()
                 .securityContexts(securityContexts)

@@ -1,14 +1,23 @@
 spring:
   cloud:
     nacos:
+      host: 192.168.7.63:8848
+      namespace: 5a590a34-7a19-481f-bdbf-685cf66db1bc
+      username: nacos
+      password: nacos
       discovery:
-        server-addr: 192.168.7.63:8848
-        namespace: 5a590a34-7a19-481f-bdbf-685cf66db1bc
+        server-addr: ${spring.cloud.nacos.host}
+        namespace: ${spring.cloud.nacos.namespace}
+        group: ${spring.profiles.active}
+        username: ${spring.cloud.nacos.username}
+        password: ${spring.cloud.nacos.password}
       config:
-        server-addr: 192.168.7.63:8848
-        namespace: 5a590a34-7a19-481f-bdbf-685cf66db1bc
+        server-addr: ${spring.cloud.nacos.host}
+        namespace: ${spring.cloud.nacos.namespace}
+        group: ${spring.profiles.active}
+        username: ${spring.cloud.nacos.username}
+        password: ${spring.cloud.nacos.password}
         file-extension: yml
-        group: dev
         refresh-enabled: true
   mvc:
     pathmatch:
